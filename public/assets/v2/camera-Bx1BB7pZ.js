@@ -1,0 +1,1 @@
+var t=1.5,s=2e3,e=6e3,M=.3,n=.46,i=a=>a<=0?0:a<.3?700:Math.min(e,Math.max(s,a/t*1e3)),m=a=>{let h=Math.min(1,Math.max(0,a));return(1-Math.cos(Math.PI*h))/2};export{t as a,s as i,M as n,m as o,e as r,i as s,n as t};

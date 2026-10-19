@@ -1,0 +1,1 @@
+var e={AppName:"OpenNoillirk",AppUrl:"https://opennoillirk.com",adminUserManagementEnabled:!1,adminPaidUsersEnabled:!1,pwa:{enabled:!0},creditsEnabled:!1,storageEnabled:!1,auth:{methods:{}}};export{e as t};

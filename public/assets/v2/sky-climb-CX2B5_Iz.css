@@ -1,0 +1,220 @@
+.og-game.climb-stage .og-hero .og-stage-home {
+  margin-top: 8px;
+}
+.og-game.climb-stage .climb-end-actions .og-stage-home {
+  text-align: center;
+  flex: 100%;
+  margin: 0;
+}
+.sc-zone-n,
+.sc-zone-alt {
+  font-family: "Pixelify Sans", var(--font);
+}
+.sc-lede {
+  padding-block: 96px 24px;
+}
+.sc-lede .hr-prose {
+  margin-top: 24px;
+}
+.sc-lede .sc-lede-text {
+  max-width: 60ch;
+  color: var(--ink);
+  font-size: 21px;
+  line-height: 1.6;
+}
+.sc-shot {
+  margin: 0;
+}
+.sc-shot-frame {
+  box-sizing: content-box;
+  aspect-ratio: 499/1080;
+  border: 3px solid var(--edge-2);
+  background: #1b2a5c;
+  max-width: 300px;
+  display: block;
+  box-shadow: 0 6px #00000073;
+}
+.sc-shot-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.sc-reading:not([data-shots]) .sc-shot-frame img {
+  display: none;
+}
+.sc-shot figcaption {
+  max-width: 300px;
+  color: var(--ink-3);
+  font: 600 14px/1.5 var(--font);
+  margin-top: 14px;
+}
+.sc-pair {
+  grid-template-columns: repeat(2, minmax(0, 300px));
+  align-items: start;
+  gap: 24px;
+  display: grid;
+}
+.sc-how {
+  grid-template-columns: 6fr 5fr;
+  align-items: start;
+  column-gap: 48px;
+  margin-top: 40px;
+  display: grid;
+}
+.sc-steps {
+  counter-reset: sc-step;
+  row-gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+.sc-steps > li {
+  background: var(--card);
+  border: 2px solid var(--edge);
+  counter-increment: sc-step;
+  padding: 20px 22px 20px 74px;
+  position: relative;
+}
+.sc-steps > li:before {
+  width: 38px;
+  height: 38px;
+  color: var(--lamp-ink);
+  font:
+    700 22px/1 "Pixelify Sans",
+    var(--font);
+  background: var(--tomato);
+  box-shadow: 0 3px 0 var(--tomato-2);
+  content: counter(sc-step);
+  place-items: center;
+  display: grid;
+  position: absolute;
+  top: 18px;
+  left: 20px;
+}
+.sc-steps h3 {
+  font-size: 21px;
+}
+.sc-steps p {
+  color: var(--ink-2);
+  margin: 8px 0 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.sc-bands {
+  row-gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+.sc-bands li {
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border-left: 6px solid var(--c);
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 12px;
+  font-size: 15px;
+  display: flex;
+}
+.sc-bands b {
+  color: var(--ink);
+  font-weight: 700;
+}
+.sc-trio {
+  grid-template-columns: repeat(3, minmax(0, 300px));
+  align-items: start;
+  gap: 24px;
+  margin-top: 36px;
+  display: grid;
+}
+.sc-zones {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin: 44px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+.sc-zones > li {
+  background: var(--card);
+  border: 2px solid var(--edge);
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+  padding: 0 18px 18px;
+  display: grid;
+}
+.sc-zone-n {
+  color: #fff;
+  text-shadow: 0 2px #00000073;
+  background: linear-gradient(var(--sky-top), var(--sky-low));
+  border-bottom: 2px solid var(--edge);
+  align-items: flex-end;
+  height: 58px;
+  margin: 0 -18px 14px;
+  padding: 0 14px 6px;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+}
+.sc-zones h3 {
+  font-size: 20px;
+}
+.sc-zone-alt {
+  color: var(--tomato-text);
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sc-zone-blurb {
+  color: var(--ink-2);
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.hr-faq-art .sc-faq-krill {
+  width: 90px;
+  height: 132px;
+  image-rendering: pixelated;
+  margin: 40px 0 0 48px;
+}
+@media (width<=1023px) {
+  .sc-how {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+}
+@media (width<=767px) {
+  .sc-lede {
+    padding-block: 64px 8px;
+  }
+  .sc-lede .sc-lede-text {
+    font-size: 18px;
+  }
+  .sc-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .sc-trio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .sc-trio figcaption {
+    font-size: 12px;
+  }
+  .sc-shot figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .sc-steps > li {
+    padding: 16px 16px 16px 64px;
+  }
+  .sc-steps > li:before {
+    top: 16px;
+    left: 14px;
+  }
+  .sc-zones {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,1 @@
+import{i as o}from"./rules-DxwvjuIt.js";var t=1e3,n=100,m=1e4,u=r=>r<m?1:Math.round(r/t*10)/10<n?t/10:t,d=r=>{if(r<m)return`${o(r)}m`;let a=r/t,e=Math.round(a*10)/10;return e<n?`${e.toFixed(1)} km`:`${o(a)} km`};export{d as n,u as t};

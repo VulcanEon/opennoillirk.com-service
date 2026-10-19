@@ -1,0 +1,12 @@
+import { i as e } from "./rules-DxwvjuIt.js";
+var t = 1e3,
+  n = 100,
+  r = 1e4,
+  i = (e) => (e < r ? 1 : Math.round((e / t) * 10) / 10 < n ? t / 10 : t),
+  a = (i) => {
+    if (i < r) return `${e(i)}m`;
+    let a = i / t,
+      o = Math.round(a * 10) / 10;
+    return o < n ? `${o.toFixed(1)} km` : `${e(a)} km`;
+  };
+export { a as n, i as t };

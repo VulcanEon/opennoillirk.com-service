@@ -1,0 +1,1 @@
+var t="data-daily-done",e=`try{var d=new Date(),p=function(n){return String(n).padStart(2,"0")},s=JSON.parse(localStorage.getItem("opennoillirk:daily:"+d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()))||"null");if(s&&s.v===2&&s.done)document.documentElement.setAttribute("${t}","")}catch(e){}`;export{e as n,t};

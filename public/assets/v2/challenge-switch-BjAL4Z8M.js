@@ -1,0 +1,1 @@
+import{t as d}from"./storage-Cd9DMQud.js";function u(e){if(e.kind.kind!=="daily"||!e.saves)return e;let n=d.getDaily(e.kind.date),s=e.prompts.map(i=>i.id),l=n!==null&&n.results.every((i,t)=>i.promptId===s[t]),r=l?n.results:[];return{...e,resume:l&&!n.done&&r.length>0?{results:r,index:r.length}:null,finished:l&&n.done?r:null}}export{u as t};

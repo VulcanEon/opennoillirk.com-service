@@ -1,6 +1,6 @@
 {
   "name": "opennoillirk",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,10 @@
     "deploy": "npm run build && wrangler deploy --config wrangler.production.jsonc",
     "db:local": "wrangler d1 migrations apply opennoillirk --local",
     "db:remote": "wrangler d1 migrations apply opennoillirk --remote --config wrangler.production.jsonc",
-    "test:browser": "node scripts/browser-audit.mjs"
+    "test:browser": "node scripts/phase2-browser-audit.mjs",
+    "test:extra": "node scripts/phase2-extra-audit.mjs",
+    "test:api": "node scripts/phase2-api-audit.mjs",
+    "test:pwa": "node scripts/phase2-pwa-audit.mjs"
   },
   "devDependencies": {
     "esbuild": "^0.28.2",

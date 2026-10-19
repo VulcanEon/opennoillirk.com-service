@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import * as R from '../src/rules.mjs';
+import {bank,index,daily,runQuestions,schedule,validDate} from '../src/game-data.mjs';
+import {validateRun} from '../src/game-api.mjs';
+const identity={id:'ModeTest',device:'ModeTestDevice00',name:'Mode Tester'};
+const perfect=run=>({...run,rounds:runQuestions(run).map(p=>{const a=R.roster(p).findIndex(r=>r[1]===4);return{p:p.id,a,b:4};})});
+test('all scheduled days resolve ten distinct playable question rosters',()=>{for(const date of Object.keys(schedule.days)){const d=daily(date);assert.equal(d.prompts.length,10);assert.equal(new Set(d.prompts.map(p=>p.id)).size,10);for(const p of d.prompts)assert(R.roster(p).length>0);}});
+test('daily rotates across local calendar dates and remains deterministic beyond the prepared schedule',()=>{for(const date of ['2026-10-19','2026-10-20','2027-01-01','2027-01-02']){assert.deepEqual(daily(date),daily(date));assert.equal(new Set(daily(date).prompts.map(p=>p.id)).size,10);}assert.notDeepEqual(daily('2026-10-19').prompts.map(p=>p.id),daily('2026-10-20').prompts.map(p=>p.id));assert.notDeepEqual(daily('2027-01-01').prompts.map(p=>p.id),daily('2027-01-02').prompts.map(p=>p.id));assert(!validDate('2026-02-31'));});
+test('seeded Unlimited uses every prompt before repeating and restarts its shuffle',()=>{const ids=Array.from({length:400},(_,i)=>R.seededPrompt(index.prompts,123456,i).id);assert.equal(new Set(ids.slice(0,200)).size,200);assert.equal(new Set(ids.slice(200)).size,200);assert.notDeepEqual(ids.slice(0,200),ids.slice(200));assert.deepEqual(ids,Array.from({length:400},(_,i)=>R.seededPrompt(index.prompts,123456,i).id));});
+test('20-question run repeats weights and validates to 5000 points / 200 people',()=>{const run=perfect({mode:'unlimited',seed:98765,bank:bank.bank,length:20}),score=validateRun({...identity,run});assert.equal(score.points,5000);assert.equal(score.people,200);assert.equal(score.results[10].points,100);assert.equal(score.results[19].points,400);});
+test('server rejects stale banks, forged seed/order, incomplete 20 and altered Daily',()=>{const run=perfect({mode:'unlimited',seed:555,bank:bank.bank,length:20});assert.throws(()=>validateRun({...identity,run:{...run,bank:99}}));assert.throws(()=>validateRun({...identity,run:{...run,seed:556}}));assert.throws(()=>validateRun({...identity,run:{...run,rounds:run.rounds.slice(0,10)}}));const d=perfect({mode:'daily',date:'2026-10-19'});assert.throws(()=>validateRun({...identity,run:{...d,date:'2026-10-20'}}));});
