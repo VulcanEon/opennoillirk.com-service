@@ -1,0 +1,16 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { build } from 'esbuild';
+import sharp from 'sharp';
+const root=new URL('../',import.meta.url).pathname;
+const content={};
+for(const f of await fs.readdir(path.join(root,'src/content')))if(f.endsWith('.html'))content[f.slice(0,-5)]=await fs.readFile(path.join(root,'src/content',f),'utf8');
+await fs.writeFile(path.join(root,'src/content.generated.mjs'),'// Generated from the checked-in authorized content templates.\nexport default '+JSON.stringify(content)+';\n');
+await build({entryPoints:[path.join(root,'src/app.mjs')],bundle:true,format:'esm',target:'es2022',outfile:path.join(root,'public/app.mjs'),external:['/assets/*','/engine.mjs'],logLevel:'warning'});
+await fs.copyFile(path.join(root,'src/styles.css'),path.join(root,'public/style.css'));
+const svg=`<svg width="512" height="512" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#0e1330"/><path d="M11 10h10v19H11z" fill="#ffc83d"/><path d="M2 17h8v12H2z" fill="#ff7a59"/><path d="M22 21h8v8h-8z" fill="#3fe0c5"/><circle cx="16" cy="5.5" r="3.2" fill="#f5f7ff"/></svg>`;
+await fs.writeFile(path.join(root,'public/favicon.svg'),svg);
+await fs.mkdir(path.join(root,'public/pwa'),{recursive:true});
+for(const size of [192,512])await sharp(Buffer.from(svg)).resize(size,size).png().toFile(path.join(root,'public/pwa',`icon-${size}.png`));
+await fs.writeFile(path.join(root,'public/manifest.webmanifest'),JSON.stringify({id:'/',name:'OpenNoillirk',short_name:'OpenNoillirk',start_url:'/',scope:'/',display:'standalone',background_color:'#0E1330',theme_color:'#0E1330',icons:[{src:'/pwa/icon-192.png',sizes:'192x192',type:'image/png'},{src:'/pwa/icon-512.png',sizes:'512x512',type:'image/png',purpose:'any maskable'}]}));
+console.log('Built OpenNoillirk application, content and icons.');

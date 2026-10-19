@@ -1,0 +1,8 @@
+SITE_URL=http://localhost:3052
+LOCAL_DEVELOPMENT=true
+# Optional production integrations. Use your own public measurement IDs.
+PLAUSIBLE_SCRIPT=
+GA4_ID=
+CLARITY_ID=
+BING_VERIFY=
+GSC_VERIFY=

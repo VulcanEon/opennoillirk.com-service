@@ -1,0 +1,35 @@
+import content from './content.generated.mjs';
+import reference from './reference-config.json' with {type:'json'};
+import {SITE} from './config.mjs';
+import {brand,esc} from './icons.mjs';
+
+const styles=reference.css.map(s=>`<link rel="stylesheet" href="${s}">`).join('');
+const stage=`<div class="home-game" id="play"><div class="og-game climb-stage" id="game" data-screen="intro"><div class="climb-board" aria-hidden="true"><picture class="climb-poster"><source media="(orientation:landscape)" srcset="/images/climb/start-landscape.webp" width="360" height="225"><img src="/images/climb/start-portrait.webp" width="195" height="422" alt="" fetchpriority="high"></picture><canvas class="climb-scene"></canvas><canvas class="climb-krill"></canvas></div><div class="og-ui"><div class="climb-hud" id="hud"></div><div class="climb-ruler" id="ruler" aria-hidden="true"></div><div class="climb-banner-slot" id="banner" aria-live="polite"></div><div id="screen"><p class="climb-title" aria-hidden="true">OpenNoillirk</p><div class="og-intro-top"><header class="home-header home-game-header">${brand()}</header></div><div class="og-hero"><p class="og-kicker">Classic · 10 questions · Free</p><h1><span class="og-h1-brand">OpenNoillirk</span><span class="visually-hidden">: </span><span class="og-h1-tag">The Noillirk game — guess the answer most people give</span></h1><p class="og-line"><b>Think like everyone.</b> Name what most people would say and pull the crowd your way.</p><div class="og-actions"><button class="og-play" aria-busy="true" disabled>Loading your climb…</button><a class="og-link" href="/how-to-play">How to play</a></div></div></div><div class="climb-lower" id="lower"></div><p class="visually-hidden" id="game-announcement" aria-live="polite"></p></div></div></div>`;
+
+function analytics(env){
+  const plausible=env.PLAUSIBLE_SCRIPT;
+  const ga=/^G-[A-Z0-9]+$/.test(env.GA4_ID||'')?env.GA4_ID:'';
+  const clarity=/^[a-z0-9]+$/.test(env.CLARITY_ID||'')?env.CLARITY_ID:'';
+  if(env.LOCAL_DEVELOPMENT==='true')return'';
+  return `<script>if(!navigator.webdriver&&location.hostname==='opennoillirk.com'&&!location.pathname.startsWith('/c/')){window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init();${plausible&&/^https:\/\/analytics\.howtosurvive\.ai\/js\/[\w.-]+\.js$/.test(plausible)?`var p=document.createElement('script');p.async=true;p.src=${JSON.stringify(plausible)};document.head.append(p);`:''}${ga?`window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',${JSON.stringify(ga)});var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+${JSON.stringify(ga)};document.head.append(g);`:''}${clarity?`window.clarity=window.clarity||function(){(clarity.q=clarity.q||[]).push(arguments)};var c=document.createElement('script');c.async=true;c.src='https://www.clarity.ms/tag/'+${JSON.stringify(clarity)};document.head.append(c);`:''}}</script>`;
+}
+
+export function page(path,env={}){
+  const isGame=path==='/'||path==='/sky-climb'||path.startsWith('/c/');
+  const key=path.slice(1),info={
+    'how-to-play':['How to Play Noillirk — Rules & Tips | OpenNoillirk','Learn how OpenNoillirk accepts answers, scores familiar guesses and lifts your krill through the sky.'],
+    scoring:['Noillirk Scoring — Points, Boards & Titles | OpenNoillirk','The five answer bands, round multipliers, height milestones and titles in OpenNoillirk.'],
+    privacy:['Privacy | OpenNoillirk','How OpenNoillirk stores progress, results, challenge links and analytics.'],
+    terms:['Terms of Play | OpenNoillirk','Terms for playing OpenNoillirk and sharing your climb.'],
+    unlimited:['Noillirk Unlimited | OpenNoillirk','Free Noillirk practice. Explore the Sky Climb ten-question game.'],
+  };
+  const [title,description]=info[key]||[SITE.title,SITE.description];
+  let body;
+  if(isGame){body=`<main class="home-main">${stage}${content.index}</main>`;}
+  else if(key==='unlimited'){body=`<main class="coming-page">${brand()}<h1>Noillirk Unlimited</h1><p>Unlimited is being prepared. You can play the complete ten-question Sky Climb now.</p><a href="/">Play Sky Climb →</a></main>`;}
+  else body=(content[key]||`<main class="coming-page">${brand()}<h1>Page not found</h1><a href="/">Back to the game</a></main>`);
+  if(key==='privacy')body=body.replace(/Noillirk/gi,m=>m); // Content is rebranded at import; telemetry is disclosed below.
+  const canonical=SITE.origin+(path.startsWith('/c/')?'/':path);
+  const jsonLd={'@context':'https://schema.org','@type':'WebApplication',name:SITE.name,url:SITE.origin,applicationCategory:'GameApplication',operatingSystem:'Web browser',browserRequirements:'Requires JavaScript',inLanguage:'en',isAccessibleForFree:true,offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},description:SITE.description,codeRepository:SITE.repository};
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#0E1330"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="robots" content="${path.startsWith('/c/')?'noindex,follow':'index,follow'}"><link rel="canonical" href="${canonical}"><meta property="og:type" content="website"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:site_name" content="OpenNoillirk"><meta property="og:image" content="${SITE.origin}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${SITE.origin}/og.png">${env.BING_VERIFY?`<meta name="msvalidate.01" content="${esc(env.BING_VERIFY)}">`:''}${env.GSC_VERIFY?`<meta name="google-site-verification" content="${esc(env.GSC_VERIFY)}">`:''}<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/pwa/icon-192.png"><link rel="manifest" href="/manifest.webmanifest"><link rel="preload" href="/fonts/pixelify-sans-latin.woff2" as="font" type="font/woff2" crossorigin>${styles}<link rel="stylesheet" href="/style.css"><script type="application/ld+json">${JSON.stringify(jsonLd).replaceAll('<','\\u003c')}</script>${analytics(env)}</head><body class="rarely"><noscript><p style="padding:20px">OpenNoillirk needs JavaScript to play. <a href="/how-to-play">Read the rules</a>.</p></noscript>${body}${content.footer}<div class="toast" id="toast" role="status" hidden></div>${isGame?`<script>window.OPENNOILLIRK=${JSON.stringify({phase:1,analyticsEnabled:env.LOCAL_DEVELOPMENT!=='true'})}</script><script type="module" src="/app.mjs"></script>`:''}</body></html>`;
+}
