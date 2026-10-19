@@ -6,7 +6,7 @@ Reference: https://noillirk.com/ (retrieved 2026-10-19). `docs/asset-manifest.js
 
 The game uses the original pixel renderer and sky-zone map, shrimp sprites and motion, scenery, UI styles, question rosters and matching rules. Branding is changed to OpenNoillirk. We do not represent the original game or artwork as our own creation. Original upstream application/admin/network code and tracking identifiers are excluded; OpenNoillirk has its own application controller, backend, analytics configuration and share-card layout.
 
-Fonts include Pixelify Sans and Baloo 2. Their authors' copyright and SIL Open Font License apply. Font license files are provided under `docs/licenses/`.
+Fonts include Pixelify Sans, Baloo 2 and Geist. Their authors' copyright and SIL Open Font License apply. Font license files are provided under `docs/licenses/`.
 
 The project bundles QRCode (MIT) and uses esbuild, Wrangler, Sharp and other npm dependencies under their respective package licenses; see `package-lock.json` and the packages' LICENSE files for details.
 
