@@ -16,6 +16,12 @@ This is a self-contained, independently hosted adaptation using assets authorize
 
 The imported Daily schedule matches the reference from October 15 through December 31, 2026. Later dates select ten questions deterministically from the included bank, so daily rotation continues without relying on the original server. A future change to the reference's bank or algorithm requires an explicit asset update; there is no claim that unseen future content is identical.
 
+## Screen comparison and homepage search metadata
+
+The latest comparison re-fetched all 92 pinned reference modules/styles and found identical originals; both stages were compared at desktop and phone sizes, including complete results and share cards. Audio cue order and 50 audio-resource hashes matched. The favicon/PWA artwork now uses the exact authorized SVG rather than the earlier approximation. Branding, independent services and supplementary reading are intentional adaptations. See [the comparison report](docs/FIDELITY-2026-10-19.md).
+
+Homepage H1/title/description/keywords emphasize Noillirk. The user-expandable, server-rendered guide appears below the existing content, preserving the initial game viewport. The audited initial desktop/phone body contains about 4,184 words with 133 standalone Noillirk occurrences (3.179%). Users and crawlers receive the same HTML. Edit `src/content/noillirk-guide.html` and rebuild to update this reading section.
+
 ## Run locally
 
 Requires Node.js 22+ and npm.
@@ -34,10 +40,13 @@ npm test
 npm run test:browser
 npm run test:extra
 npm run test:api
+npm run test:seo
 npm run test:pwa  # HTTPS deployment; defaults to the live site
 ```
 
 Browser audits use installed Google Chrome. To use a Playwright browser, run `npx playwright install chromium` and set `BROWSER_CHANNEL=chromium`. `TEST_URL` changes the target (default localhost); audits save test results and suggestions to that target's database. Screenshots and reports go to ignored `output/phase2/` and `output/phase2-extra/`. Automated traffic skips analytics.
+
+Optional: `npm run test:fidelity` compares the live reference with the local app using isolated API fixtures. `MIXED=1 TEST_OUTPUT=output/fidelity-mixed npm run test:fidelity` exercises all bands, pass/timeout and alternate cards. This audit fetches public reference assets and does not save scores to the reference service.
 
 ## Deploy to your Cloudflare account
 

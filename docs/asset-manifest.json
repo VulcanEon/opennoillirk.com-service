@@ -1351,6 +1351,12 @@
       "source": "https://noillirk.com/pwa/pwa-192x192.png",
       "bytes": 37828,
       "sha256": "8382ecd0f3f4b3199428b7cc8e241e218c5c2fea315e8cfe6b688e491422cf92"
+    },
+    {
+      "path": "/favicon.svg",
+      "source": "https://noillirk.com/favicon.svg",
+      "bytes": 423,
+      "sha256": "d08c6adbbd2eceaff79d63f77948006e7c76a7093463486716535748d7e89fb5"
     }
   ]
 }

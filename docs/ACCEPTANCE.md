@@ -42,3 +42,7 @@ The supplied web-game Playwright client was run for both stages and its canvas s
 Set `TEST_URL` to target another deployment. Set `TEST_OUTPUT` for separate full/extra output folders. `AUDIT_UNRANKED=1` makes the full audit mark saved runs as replayed so verification runs do not enter the public Daily leaderboard; gameplay, score recomputation and challenge persistence still use the real services. Audits write test results/suggestions to the selected database and skip analytics.
 
 An additional HTTPS audit confirms one active versioned service-worker registration, one document load and an uninterrupted playing screen. The duplicate compatibility-layer registration was removed, the API now supplies the reference buildId contract, and updates wait for the reference update action. Production verification and independently rebuilt public-source results are recorded in `docs/DEPLOYMENT.md` after release.
+
+## Follow-up screen comparison and SEO
+
+The phase-three comparison and SEO additions are documented in `FIDELITY-2026-10-19.md`. Unit tests now include a homepage content/metadata regression (13 total). Native accordion behavior, initial viewport preservation, hydrated keyword density and identical crawler/user HTML are verified with `npm run test:seo`. The exact authorized favicon now supplies both favicon and PWA icon builds. Game controller, renderer and audio behavior were preserved.

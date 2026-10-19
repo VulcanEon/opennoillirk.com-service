@@ -13,3 +13,5 @@ Fonts include Pixelify Sans, Baloo 2, Geist and DM Sans. Their authors' copyrigh
 The project also bundles QRCode (MIT) and uses esbuild, Wrangler, Sharp, Playwright, LinkeDOM, Prettier and other npm dependencies under their package licenses; see `package-lock.json` and package LICENSE files.
 
 Anyone redistributing or reusing the authorized reference materials must ensure their own permission covers that use. No general sublicensing right to the upstream client, artwork, audio or question data is asserted here.
+
+The favicon/PWA icon artwork uses the authorized reference SVG, recorded in the asset manifest. The supplementary Noillirk game guide is project-owned copy; the reference's game artwork and client remain separately attributed.

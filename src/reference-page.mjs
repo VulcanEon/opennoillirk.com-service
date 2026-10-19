@@ -1,8 +1,18 @@
 import pages from './reference-pages.generated.mjs';
+import content from './content.generated.mjs';
+import {SITE} from './config.mjs';
 export function referencePage(path,env={}){
  const key=path==='/'?'index':path.slice(1);
  let html=(pages[key]||pages.index).replace(/(?<!open)noillirk\.com/g,'opennoillirk.com').replaceAll('%20Noillirk%20','%20OpenNoillirk%20').replaceAll('hello@opennoillirk.com','Contact on GitHub');
  if(!html.includes('home-footer-source'))html=html.replace('</footer>','<p class="home-footer-source"><a href="https://github.com/VulcanEon/opennoillirk.com-service" target="_blank" rel="noopener">GitHub · Deployable source code ↗</a></p></footer>');
+ if(path==='/'){
+  const escape=s=>s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  html=html.replace(/<title>[\s\S]*?<\/title>/,()=>`<title>${escape(SITE.title)}</title>`)
+   .replace(/(<meta (?:property|name)="(?:og:title|twitter:title)" content=")[^"]*/g,(_,prefix)=>prefix+escape(SITE.title))
+   .replace(/(<meta (?:property|name)="(?:description|og:description|twitter:description)" content=")[^"]*/g,(_,prefix)=>prefix+escape(SITE.description))
+   .replace('</head>','<meta name="keywords" content="noillirk, noillirk game, noillirk daily, noillirk unlimited, sky climb, tabletop game"></head>');
+  html=html.replace(/<footer\b/,()=>content['noillirk-guide']+'<footer');
+ }
  const canonical='https://opennoillirk.com'+path;
  // Server metadata also describes links opened without executing JavaScript.
  if(path.startsWith('/c/')||/^\/archive\/\d+$/.test(path)){

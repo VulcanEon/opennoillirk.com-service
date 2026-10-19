@@ -1,7 +1,11 @@
+import guide from '/noillirk-guide.mjs';
 import {t as audio} from '/assets/v2/audio-BdxWxAxT.js';
 const audioEvents=[];const originalPlay=audio.play.bind(audio);audio.play=(name,...args)=>{audioEvents.push(name);if(audioEvents.length>80)audioEvents.shift();return originalPlay(name,...args);};
 const source='https://github.com/VulcanEon/opennoillirk.com-service';
 function patch(){
+ const existing=document.querySelector('[data-noillirk-guide]');
+ if(location.pathname==='/'&&document.querySelector('.rarely-home > footer')&&!existing)document.querySelector('.rarely-home > footer').insertAdjacentHTML('beforebegin',guide);
+ if(location.pathname!=='/'&&existing)existing.remove();
  for(const footer of document.querySelectorAll('footer')){
   if(!footer.querySelector('.home-footer-source')){const p=document.createElement('p');p.className='home-footer-source';const a=document.createElement('a');a.href=source;a.textContent='GitHub · Deployable source code ↗';a.target='_blank';a.rel='noopener';p.append(a);footer.append(p);}
   const disclaimer=footer.querySelector('.home-footer-bottom p');if(disclaimer&&!disclaimer.dataset.open){disclaimer.textContent='OpenNoillirk is an independently hosted adaptation using authorized game assets.';disclaimer.dataset.open='true';}

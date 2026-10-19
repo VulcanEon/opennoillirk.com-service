@@ -31,3 +31,11 @@ The sanitized public repository was independently installed, built, tested and c
 The logo/favicon, 192/512 PWA icons and 1200×630 OG image remain included. Visible H1 contains “Noillirk game”; titles/descriptions, canonical/schema/robots and AI summaries describe the full release. Private challenge URLs are noindex. Prerendered AI links and explicit source attribution point at OpenNoillirk and its public repository, including without JavaScript.
 
 No credentials or production database contents are published. No subagents were used. See `ACCEPTANCE.md` for exact fidelity boundaries, including future question-bank changes and physical-device coverage.
+
+## Screen comparison and SEO follow-up
+
+Published build **6ba93337c96d**, Worker release `a46eb793-fbb9-4091-b523-29b9c05ce1bc`. The favicon/PWA icons now use the exact authorized reference SVG. H1/title/description/keywords emphasize Noillirk, with an accessible server-rendered guide below the existing homepage content. Initial viewport/game geometry is preserved.
+
+Post-release desktop and phone SEO checks both measured **4,184 body words, 133 standalone Noillirk occurrences, 3.179%**. Normal and Googlebot request HTML is identical. The guide expands with a pointer, closes with the keyboard, appears once and follows the reference reading section's focused-game visibility. HTTPS PWA and remote API persistence/ownership/ranking checks passed with no application errors. D1 migrations were rechecked: none pending.
+
+The fresh reference comparison matched 92 original module/style hashes and 50 audio resources. Both perfect and mixed-band runs matched cue order and playback counts. Mixed runs also verified pass/timeout, alternate downloaded cards and clipboard destinations. Local complete acceptance passed both stages, daily rollover/streaks, Unlimited20 and Endless22. Unit tests are now **13/13**. The sanitized public repository independently builds to the same hash and passes the same unit tests. See `FIDELITY-2026-10-19.md` for screenshots, methods and intentional differences.

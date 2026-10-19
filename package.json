@@ -13,7 +13,9 @@
     "test:browser": "node scripts/phase2-browser-audit.mjs",
     "test:extra": "node scripts/phase2-extra-audit.mjs",
     "test:api": "node scripts/phase2-api-audit.mjs",
-    "test:pwa": "node scripts/phase2-pwa-audit.mjs"
+    "test:pwa": "node scripts/phase2-pwa-audit.mjs",
+    "test:seo": "node scripts/seo-browser-audit.mjs",
+    "test:fidelity": "node scripts/fidelity-audit.mjs"
   },
   "devDependencies": {
     "esbuild": "^0.28.2",

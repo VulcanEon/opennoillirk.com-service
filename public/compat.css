@@ -1,2 +1,5 @@
 /* Project-owned brand/source integration; reference game geometry is unchanged. */
 .home-footer-source{max-width:1160px;margin:18px auto 0;padding:16px 24px;border-top:1px solid var(--edge)}.home-footer-source a{color:var(--tomato-text)}
+
+/* Accessible, server-rendered supplementary reading; the game stage keeps its original layout. */
+.noillirk-guide{padding-block:24px 48px}.noillirk-guide details{border-block:1px solid var(--edge);padding:18px 0}.noillirk-guide summary{cursor:pointer;font-weight:700;line-height:1.5}.noillirk-guide summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:5px}.noillirk-guide-body{max-width:860px;padding-top:24px}.noillirk-guide-body h2{font-size:24px;line-height:1.3;margin:32px 0 12px}.noillirk-guide-body p{margin:0 0 20px}.noillirk-guide a{color:var(--cobalt);text-underline-offset:3px}

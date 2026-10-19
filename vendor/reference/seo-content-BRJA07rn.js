@@ -42,8 +42,9 @@ var e = [
   },
   a = {
     ...r,
-    title: `OpenNoillirk Game: The Daily Dive — Guess the Most Common Answer`,
-    description: `OpenNoillirk is a free daily game: guess the answer most people would give. Ten prompts, 30 seconds each, a top-ten board for every one, and no sign-up.`,
+    title: `Noillirk Game — Daily & Unlimited | OpenNoillirk`,
+    description: `Play the Noillirk game free: Daily 10, Sky Climb, Tabletop and Unlimited. Guess the most common answer, climb higher and challenge friends on OpenNoillirk.`,
+    keywords: [`noillirk`, `noillirk game`, `noillirk daily`, `noillirk unlimited`, `sky climb`, `tabletop game`],
     canonicalPath: `/`,
     ldJson: {
       ...i,

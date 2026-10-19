@@ -1,4 +1,4 @@
-const CACHE='opennoillirk-701235019219';
+const CACHE='opennoillirk-6ba93337c96d';
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/offline.html','/favicon.svg'])));});
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting();});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('opennoillirk-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
