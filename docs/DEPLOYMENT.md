@@ -7,7 +7,7 @@
 - The apex already had proxied A records. The Worker uses an apex `/*` route rather than deleting those records; `www` uses a custom domain. Nameservers resolve to Cloudflare and HTTPS is working.
 - `/api/health` confirms database/storage bindings. Production full-run audit successfully created a result in remote D1, read the challenge and updated its nickname. Production and local player data remain separate.
 - `/media/og.png` returns the R2 object with the same SHA-256 as the checked-in image. Game assets are also self-contained in Workers static assets.
-- Plausible uses the requested https://analytics.howtosurvive.ai instance. Installation verified and real page views visible in its dashboard.
+- Plausible uses the requested https://analytics.howtosurvive.ai instance. Installation verified and real page views visible in its dashboard. Custom goals for game start/completion, answer acceptance/refusal and sharing are configured.
 - GA4 has a dedicated OpenNoillirk property and web stream; real-time report displays the live page and one active visitor.
 - Clarity has a dedicated project; its script and runtime both load in the live browser. Dashboard processing is not yet complete; the setup screen says data may take up to two hours. Do not claim a recording has been reviewed yet.
 - GSC HTTPS URL-prefix property verified with an HTML meta tag; sitemap submission confirmed successful.

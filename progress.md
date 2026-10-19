@@ -16,3 +16,6 @@ Original prompt: Build OpenNoillirk at opennoillirk.com as a faithful, authorize
 - Requested Plausible installation verified with live visitor; GA4 dedicated resource/stream with live visitor. Clarity script/runtime loaded, awaiting its processing (up to two hours).
 - GSC ownership verified and sitemap successfully submitted. Bing ownership verified and sitemap Processing. Screenshots saved under ignored output/platforms.
 - Remaining next phases: Tabletop, daily rotation, Unlimited, remaining secondary-screen and share-card/ruler fidelity gaps. See docs/ACCEPTANCE.md. No subagents used.
+- Public repository independently installed and built; tests 6/6 and Wrangler deployment dry run passed with only template bindings. Repository visibility verified private/public respectively; both main branches pushed and both homepage metadata point at the live site.
+- Extra audit passed: interactive homepage score example, mobile share sheet and portable challenge fallback while API unavailable. A test assertion needed case-insensitive matching because CSS renders the challenge heading uppercase; no game defect was involved.
+- Plausible custom goals configured for run_start, run_complete, share_open, share_action, answer and answer_refused. A real-browser opening of the game was used to validate the event path.
